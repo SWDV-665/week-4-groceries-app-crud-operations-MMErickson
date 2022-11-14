@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar class="header">
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h4 padding-top text-center *ngIf = "loadItems().length === 0">
+    You have no items on your list.
+  </h4>
+
+  <ion-list>
+    <ion-item-sliding *ngFor = "let item of loadItems(); let i = index">  
+      <ion-item>
+        <h2>{{item.name}} <span>
+        <ion-list> <!-- Drop down menu to select quantity -->
+          <ion-item>
+            <ion-select [(ngModel)]=item.quantity>
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+              <ion-option value="7">7</ion-option>
+              <ion-option value="8">8</ion-option>
+              <ion-option value="9">9</ion-option>
+              <ion-option value="10">10</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </span></h2>
+      </ion-item>
+
+      <!-- Buttons used with slider to edit or remove an item -->
+
+      <ion-item-options>
+        <button (click) ="editItem(item, i)" ion-button color="primary" icon-start>
+          <ion-icon name="ios-create-outline"></ion-icon>
+          Edit
+        </button>
+        <button (click) ="removeItem(item, i)" ion-button color="secondary" icon-start>
+          <ion-icon name="ios-trash"></ion-icon>
+          Done
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- Displays a FAB button for adding groceries -->
+
+  <ion-fab bottom right padding>
+    <button (click) ="addItem()" ion-fab mini color='primary'><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+</ion-content>
